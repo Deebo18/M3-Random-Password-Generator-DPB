@@ -1,8 +1,72 @@
 // Assignment code here
-
+var alphaLower = "abcdefghijklmnopqrstuvwxyz";
+var alphaUpper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+var numbers = "0123456789";
+var special = "!@#$%^&*_-+=";
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
+
+// Function created in order to prompt user of options before generating password.
+
+function questions() {
+  var isValid = false;
+  do {
+    var length = window.prompt("Please choose a password between 8 and 128 character.")
+    var includeLowerCase = window.confirm("Do you want your password to include lowercase characters?")
+    var includeUpperCase = window.confirm("Do you want your password to include uppercase characters?")
+    var includeNumbers = window.confirm("Do you want your password to include numbers?")
+    var includeSpecial = window.confirm("Do you want your password to include special characters?")
+    var responses = {
+      length: length,
+      includeLowerCase: includeLowerCase,
+      includeUpperCase: includeUpperCase,
+      includeNumbers: includeNumbers,
+      includeSpecial: includeSpecial,
+    }
+    if((length < 8)||(length > 128))
+    alert("Please choose a number between 8 and 128");
+    else if((!includeLowerCase)&&(!includeUpperCase)&&(!includeNumbers)&&(!includeSpecial))
+    alert("Please choose at least one type.")
+    else
+    isValid = true;
+  } while(!isValid);
+  return responses;
+}
+
+// Function takes users inputs and creates a strong password.
+
+function generatePassword() {
+  var passwordOptions = questions();
+  var possibleCombo = [];
+  var finalPassword = "";
+
+  if (passwordOptions.includeLowerCase) {
+    for (var i of alphaLower)
+      possibleCombo.push(i);
+  }
+  if (passwordOptions.includeUpperCase) {
+    for (var i of alphaUpper)
+      possibleCombo.push(i);
+  }
+  if (passwordOptions.includeNumbers) {
+    for (var i of numbers)
+      possibleCombo.push(i);
+  }
+  if (passwordOptions.includeSpecial) {
+    for (var i of special)
+      possibleCombo.push(i);
+  }
+  console.log(possibleCombo);
+
+  for (var i = 0; i < passwordOptions.length; i++) {
+    finalPassword += possibleCombo[Math.floor(Math.random() * possibleCombo.length)];
+    
+  }
+  console.log(finalPassword);
+
+  return finalPassword;
+}
 
 // Write password to the #password input
 function writePassword() {

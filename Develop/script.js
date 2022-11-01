@@ -1,8 +1,12 @@
 // Assignment code here
-var alphaLower = "abcdefghijklmnopqrstuvwxyz";
-var alphaUpper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-var numbers = "0123456789";
-var special = "!@#$%^&*_-+=";
+var alphaLower = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+var alphaUpper = [];
+var numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+var special = ['!', '@', '#', '$', '%', '^', '&', '*', '(', ')'];
+
+for (var i = 0; i < alphaLower.length; i++) {
+  alphaUpper[i] = alphaLower[i].toUpperCase()
+}
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
@@ -13,6 +17,12 @@ function questions() {
   var isValid = false;
   do {
     var length = window.prompt("Please choose a password between 8 and 128 character.")
+    
+    if((length < 8)||(length > 128)) {
+    alert("Please choose a number between 8 and 128");
+    return
+  }
+    
     var includeLowerCase = window.confirm("Do you want your password to include lowercase characters?")
     var includeUpperCase = window.confirm("Do you want your password to include uppercase characters?")
     var includeNumbers = window.confirm("Do you want your password to include numbers?")
@@ -24,9 +34,8 @@ function questions() {
       includeNumbers: includeNumbers,
       includeSpecial: includeSpecial,
     }
-    if((length < 8)||(length > 128))
-    alert("Please choose a number between 8 and 128");
-    else if((!includeLowerCase)&&(!includeUpperCase)&&(!includeNumbers)&&(!includeSpecial))
+
+   if((!includeLowerCase)&&(!includeUpperCase)&&(!includeNumbers)&&(!includeSpecial))
     alert("Please choose at least one type.")
     else
     isValid = true;
@@ -34,7 +43,7 @@ function questions() {
   return responses;
 }
 
-// Function takes users inputs and creates a strong password.
+// Function to take user's inputs and generates a desired password based on criteria.
 
 function generatePassword() {
   var passwordOptions = questions();

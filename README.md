@@ -30,5 +30,6 @@ THEN the password is either displayed in an alert or written to the page
 ```
 
 ### Functionality
-(./assets/img/BeforeInput.jpeg)
+![](./assets/img/BeforeInput.jpeg)
 
+![](./assets/img/AfterInput.jpeg)

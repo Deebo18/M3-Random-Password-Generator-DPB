@@ -22,7 +22,7 @@ function questions() {
     alert("Please choose a number between 8 and 128");
     return
   }
-    
+  
     var includeLowerCase = window.confirm("Do you want your password to include lowercase characters?")
     var includeUpperCase = window.confirm("Do you want your password to include uppercase characters?")
     var includeNumbers = window.confirm("Do you want your password to include numbers?")
